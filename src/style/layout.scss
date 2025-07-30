@@ -1,0 +1,10 @@
+$breakpoint: 992px !default;
+// $scale: 14px !default;
+
+@use './_main.scss';
+@use './_table-content.scss';
+@use './_topbar.scss';
+@use './_utils.scss';
+@use './_sidebar_vertical.scss';
+@use './_content.scss';
+@use './_fonts.scss';

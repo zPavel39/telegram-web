@@ -1,0 +1,14 @@
+.header-table-content {
+	display: flex;
+	align-items: center;
+	gap: 2rem;
+}
+
+@media (max-width: 850px) {
+	.header-table-content {
+		flex-direction: column-reverse;
+		flex-wrap: wrap;
+		align-items: flex-end;
+		gap: 0.5rem;
+	}
+}

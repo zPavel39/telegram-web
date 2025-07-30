@@ -1,0 +1,66 @@
+/* Utils */
+.clearfix:after {
+	content: ' ';
+	display: block;
+	clear: both;
+}
+
+.card {
+	background: var(--surface-card);
+	border: 1px solid var(--surface-border);
+	padding: 2rem;
+	margin-bottom: 2rem;
+	box-shadow: var(--card-shadow);
+	border-radius: 12px;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.p-toast {
+	&.p-toast-top-right,
+	&.p-toast-top-left,
+	&.p-toast-top-center {
+		top: 70px;
+	}
+}
+
+@media (max-width: 600px) {
+	.card {
+		padding: 1rem;
+	}
+}
+
+.custom-progress-bar.progress-low .p-progressbar-value {
+	background-color: red !important;
+}
+
+.custom-progress-bar.progress-medium .p-progressbar-value {
+	background-color: orange !important;
+}
+
+.custom-progress-bar.progress-high .p-progressbar-value {
+	background-color: #22c55e !important;
+}
+
+.custom-progress-bar.progress-hightPercent .p-progressbar-value {
+	background-color: rgba(255, 0, 0, 0.699) !important;
+}
+
+.custom-progress-bar.progress-mediumPercent .p-progressbar-value {
+	background-color: rgb(255, 187, 61) !important;
+}
+
+.custom-progress-bar.progress-lowPercent .p-progressbar-value {
+	background-color: #2dd66b !important;
+}
+
+.p-button.p-button-icon-only.p-button-rounded {
+	border-radius: 50%;
+	min-width: 3rem;
+	min-height: 3rem;
+}
+.custom-date-to-calendar .p-datepicker-trigger {
+	border-radius: 0 !important;
+}

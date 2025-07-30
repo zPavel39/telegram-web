@@ -1,0 +1,59 @@
+import React, { useEffect, useState } from 'react'
+import { useTelegram } from '../../hook/useTelegram'
+import AuthCard from '../../components/auth-card/AuthCard'
+
+const MainPage = () => {
+	const { tg, user } = useTelegram()
+	const [authData, setAuthData] = useState<any>(null)
+	const [loading, setLoading] = useState(true)
+	const [error, setError] = useState<string | null>(null)
+
+	const onSendData = () => {
+		tg.sendData(JSON.stringify({ message: 'Привет из React TS' }))
+	}
+
+	// 	берем window.Telegram.WebApp.initData.
+
+	// отправляем на сервер (fetch POST).
+
+	// проверяем подпись по инструкции Telegram.
+
+	// если валидно → считаем пользователя авторизованным
+	useEffect(() => {
+		const tg = (window as any).Telegram?.WebApp
+
+		if (tg?.initData) {
+			fetch('https://your-backend.com/auth/telegram', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ initData: tg.initData }),
+			})
+				.then(async res => {
+					if (!res.ok) {
+						throw new Error(`Ошибка сервера: ${res.status}`)
+					}
+					return res.json()
+				})
+				.then(data => {
+					console.log('Auth success:', data)
+					setAuthData(data) // ✅ сохраняем ответ сервера в стейт
+				})
+				.catch(err => {
+					console.error('Auth error:', err)
+					setError(err.message)
+				})
+				.finally(() => setLoading(false))
+		}
+	}, [])
+
+	/* 	if (loading) return <p>Авторизация...</p>
+	if (error) return <p>Ошибка: {error}</p> */
+
+	return (
+		<div>
+			<AuthCard authData={authData} />
+		</div>
+	)
+}
+
+export default MainPage

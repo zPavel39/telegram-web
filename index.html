@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>Загрузка...</title>
+		<script>
+			window.__ENV = window.__ENV || {}
+
+			const set = (name, runtime, buildtime) => {
+				window.__ENV[name] =
+					runtime && !runtime.startsWith('$') ? runtime : buildtime
+			}
+
+			set('VITE_SERVER_API', '$VITE_SERVER_API', '%VITE_SERVER_API%')
+			set('VITE_PROJECT_NAME', '$VITE_PROJECT_NAME', '%VITE_PROJECT_NAME%')
+			set('VITE_PROJECT_URL', '$VITE_PROJECT_URL', '%VITE_PROJECT_URL%')
+
+			if (window.__ENV.VITE_PROJECT_NAME) {
+				document.title = window.__ENV.VITE_PROJECT_NAME
+			}
+		</script>
+	</head>
+	<body>
+		<div id="root"></div>
+		<script type="module" src="/src/main.tsx"></script>
+		<script src="https://telegram.org/js/telegram-web-app.js"></script>
+	</body>
+</html>
