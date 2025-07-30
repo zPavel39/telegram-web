@@ -17,25 +17,23 @@ const MainPage = () => {
 		const tg = (window as any).Telegram?.WebApp
 
 		if (tg?.initData) {
-			fetch('https://webhook.site/214eb4ce-19f1-4f52-aeb6-1ddcc18bdf1e', {
+			fetch('/auth/telegram', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ initData: tg.initData }),
 			})
-				.then(async res => {
-					if (!res.ok) {
-						throw new Error(`Ошибка сервера: ${res.status}`)
-					}
-					return res.json()
-				})
+				.then(res => res.json())
 				.then(data => {
-					console.log('Auth success:', data)
-					setAuthData(data)
+					if (data.ok) {
+						// После авторизации получаем данные с бэка
+						return fetch('/user/info')
+					} else {
+						throw new Error('Ошибка авторизации')
+					}
 				})
-				.catch(err => {
-					console.error('Auth error:', err)
-					setError(err.message)
-				})
+				.then(res => res.json())
+				.then(userData => setAuthData(userData))
+				.catch(err => setError(err.message))
 				.finally(() => setLoading(false))
 		}
 	}, [])
