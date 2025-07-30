@@ -23,7 +23,7 @@ const MainPage = () => {
 		const tg = (window as any).Telegram?.WebApp
 
 		if (tg?.initData) {
-			fetch('https://your-backend.com/auth/telegram', {
+			fetch('https://webhook.site/214eb4ce-19f1-4f52-aeb6-1ddcc18bdf1e', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ initData: tg.initData }),
@@ -36,7 +36,7 @@ const MainPage = () => {
 				})
 				.then(data => {
 					console.log('Auth success:', data)
-					setAuthData(data) // ✅ сохраняем ответ сервера в стейт
+					setAuthData(data)
 				})
 				.catch(err => {
 					console.error('Auth error:', err)
@@ -46,8 +46,8 @@ const MainPage = () => {
 		}
 	}, [])
 
-	/* 	if (loading) return <p>Авторизация...</p>
-	if (error) return <p>Ошибка: {error}</p> */
+	if (loading) return <p>Авторизация...</p>
+	if (error) return <p>Ошибка: {error}</p>
 
 	return (
 		<div>
