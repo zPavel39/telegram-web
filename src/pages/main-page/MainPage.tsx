@@ -1,16 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { useTelegram } from '../../hook/useTelegram'
+import { useEffect, useState } from 'react'
 import AuthCard from '../../components/auth-card/AuthCard'
 
 const MainPage = () => {
-	const { tg, user } = useTelegram()
 	const [authData, setAuthData] = useState<any>(null)
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState<string | null>(null)
-
-	const onSendData = () => {
-		tg.sendData(JSON.stringify({ message: 'Привет из React TS' }))
-	}
 
 	// 	берем window.Telegram.WebApp.initData.
 

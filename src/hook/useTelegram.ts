@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 export function useTelegram() {
 	const tg = (window as any).Telegram?.WebApp
